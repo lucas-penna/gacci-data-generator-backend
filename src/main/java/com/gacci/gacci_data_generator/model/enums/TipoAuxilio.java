@@ -1,11 +1,11 @@
 package com.gacci.gacci_data_generator.model.enums;
 
 public enum TipoAuxilio {
-    ALIMENTACAO(1, "Alimentação"),
-    SAUDE(2, "Saúde"),
-    EDUCACAO(3, "Educação"),
-    MORADIA(4, "Moradia"),
-    OUTRO(5, "Outro");
+    CESTABASICA(1, "Cesta básica"),
+    LEITE(2, "Leite"),
+    SUPLEMENTO(3, "Suplemento"),
+    MEDICAMENTO(4, "Medicamento"),
+    OUTROS(5, "Outros");
 
     private final int id;
     private final String label;
@@ -30,5 +30,14 @@ public enum TipoAuxilio {
             }
         }
         throw new IllegalArgumentException("Id inválido para TipoAuxilio: " + id);
+    }
+
+    public static TipoAuxilio fromLabel(String label) {
+        for (TipoAuxilio t : values()) {
+            if (t.getLabel().equalsIgnoreCase(label)) {
+                return t;
+            }
+        }
+        throw new IllegalArgumentException("Label inválido para TipoAuxilio: " + label);
     }
 }

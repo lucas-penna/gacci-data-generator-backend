@@ -23,19 +23,24 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-            .csrf().disable()
-            .authorizeHttpRequests()
-            .requestMatchers("/login", "/users/register").permitAll()
-            .anyRequest().authenticated()
-            .and()
-            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    http
+        .csrf().disable()
+        .authorizeHttpRequests()
+        .requestMatchers("/login", "/users/register", "/pessoa/save").permitAll()
+        .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll()
+        .anyRequest().authenticated()
+        .and()
+        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+    http.cors();  // Ativar suporte ao CORS
 
-        return http.build();
-    }
+    // Adicionar o filtro JWT depois que o CORS for resolvido
+    http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+
+    return http.build();
+}
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {

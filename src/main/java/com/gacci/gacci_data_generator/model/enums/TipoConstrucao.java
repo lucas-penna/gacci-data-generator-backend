@@ -1,10 +1,10 @@
 package com.gacci.gacci_data_generator.model.enums;
 
 public enum TipoConstrucao {
-    ALVENARIA(1, "Alvenaria"),
-    MADEIRA(2, "Madeira"),
-    MISTA(3, "Mista"),
-    OUTRO(4, "Outro");
+    CASAPROPRIA(1, "Casa própria"),
+    ALUGUEL(2, "Aluguel"),
+    FINANCIADA(3, "Financiada"),
+    CEDIDA(4, "Cedida");
 
     private final int id;
     private final String label;

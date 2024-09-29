@@ -13,7 +13,13 @@ import java.util.function.Function;
 @Component
 public class JwtUtil {
 
-    private final Key SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    // Sua chave secreta de pelo menos 32 caracteres
+    private final String SECRET_KEY = "za2FnzKHmT2NXM9+AFV2wNfG9VGdnmNbYYD1P9Vs/sE=";
+
+    // Método para converter a chave secreta em um objeto do tipo Key
+    private Key getSigningKey() {
+        return Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
+    }
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
@@ -26,7 +32,7 @@ public class JwtUtil {
 
     private Claims extractAllClaims(String token) {
         return Jwts.parserBuilder()
-                .setSigningKey(SECRET_KEY)
+                .setSigningKey(getSigningKey())  // Use a chave gerada
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
@@ -44,8 +50,8 @@ public class JwtUtil {
         return Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
-                .signWith(SECRET_KEY)
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))  // 10 horas de validade
+                .signWith(getSigningKey(), SignatureAlgorithm.HS256)  // Use a chave gerada e o algoritmo
                 .compact();
     }
 
