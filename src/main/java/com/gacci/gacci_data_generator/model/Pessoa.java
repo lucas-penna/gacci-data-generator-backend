@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-
+import com.gacci.gacci_data_generator.model.enums.RemissaoEnum;
 import java.util.Date;
 import java.util.List;
 
