@@ -46,6 +46,8 @@ public class Pessoa {
     @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
     private Habitacao habitacao;
+    private Boolean ativo;
+    private RemissaoEnum remissao;
 
 
     public Pessoa(long l, String ana, String number, Object o, Object o1, Object o2, Object o3, Object o4, Object o5, Object o6) {
