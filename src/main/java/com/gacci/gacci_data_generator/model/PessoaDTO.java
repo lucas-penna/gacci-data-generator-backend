@@ -5,6 +5,7 @@ import com.gacci.gacci_data_generator.model.enums.EstadoCivil;
 import com.gacci.gacci_data_generator.model.enums.TipoConstrucao;
 import jakarta.persistence.*;
 import lombok.Data;
+import com.gacci.gacci_data_generator.model.enums.RemissaoEnum;
 
 import java.util.Date;
 import java.util.List;
@@ -29,4 +30,6 @@ public class PessoaDTO {
     private List<Auxilio> auxilios;
     private Saude saude;
     private Habitacao habitacao;
+    private Boolean ativo;
+    private RemissaoEnum remissao;
 }
