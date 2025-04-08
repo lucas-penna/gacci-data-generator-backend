@@ -88,6 +88,8 @@ public class PessoaService {
             pessoaToSave.setCpf(pessoa.getCpf());
             pessoaToSave.setEscolaridade(pessoa.getEscolaridade());
             pessoaToSave.setEstadoCivil(pessoa.getEstadoCivil());
+            pessoaToSave.setRemissao(pessoa.getRemissao());
+            pessoaToSave.setAtivo(true);
 
             repository.save(pessoaToSave);
         } catch (Exception e) {
